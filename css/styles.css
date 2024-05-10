@@ -2,6 +2,26 @@
 
 }
 
+
+/* 适应手机布局，来自https://www.zhihu.com/question/584075270/answer/2903586485 */
+body {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* 针对不同屏幕大小设置样式 */
+    @media screen and (max-width: 480px) {
+      .main {
+        width: 100%;
+      }
+    }
+
+   
+
+
+
+/* 整体边框 */
 html {
     margin: 50px;
     font-size: 10px;
@@ -59,14 +79,6 @@ html {
 
 
 
-/* main section*/
-main {
-    color: black;
-}
-
-p {
-    margin-top: 10px;
-}
 
 
 

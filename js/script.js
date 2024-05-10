@@ -4,18 +4,18 @@
 //手动输入文件地址，不能有中文
 const MusicList = [
     ['FGO.mp3','GoldenLegend.mp3'],//d0是抽卡音效
-    ['Pokemon.mp3'],//从这里开始是d1
-    ['Yu-Gi-Oh!.mp3'],
-    ['NARUTO.mp3'],
-    ['jojo2.mp3'],
-    ['JiuPingZhiMaGuan.mp3'],
-    ['ZeldaQuickMoving.mp3','BOTW_Secret.wav'],
-    ['NoBulletInGun.mp3'],
+    ['Pokemon.mp3','DigitalMonsters.mp3'],//从这里开始是d1
+    ['Yu-Gi-Oh!.mp3','liangerguang.mp3'],
+    ['NARUTO.mp3','pengyou.mp3'],
+    ['jojo2.mp3','bengchemailiu.mp3'],
+    ['JiuPingZhiMaGuan.mp3','JohnWick.mp3'],
+    ['ZeldaQuickMoving.mp3','BOTW_Secret.wav','litang.mp3'],
+    ['NoBulletInGun.mp3','Hail_Hydra.mp3'],
     ['COC_Sneak.mp3'],
-    ['ThisisSpata.mp3'],
-    ['DaZaiBian.mp3'],
-    ['HeroisNeverDie.mp3'],
-    ['Tekeli-li.mp3']    
+    ['ThisisSpata.mp3','Vergil.mp3'],
+    ['DaZaiBian.mp3','Smaug.mp3'],
+    ['HeroisNeverDie.mp3','hualiao.mp3'],
+    ['Tekeli-li.mp3','zhugeliang.mp3']    
     ]
 
 
