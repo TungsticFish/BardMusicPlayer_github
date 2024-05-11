@@ -67,8 +67,8 @@ Spirits_0.addEventListener('click', PlayMusic)
 //手动输入歌曲列表。不能有中文
 //似乎可以通过github的api获取repo中子目录的内容列表。https://api.github.com/repos/solomonxie/gists/contents/目录名。但是比较麻烦。
 const MusicList_Spirits = [
-    ['FGO.mp3','GoldenLegend.mp3','MagicConch.mp3','xuebao.mp3'],//0是抽卡音效
-    ['Pokemon.mp3','DigitalMonsters.mp3'],//从这里开始是Tale-1
+    ['FGO.mp3','GoldenLegend.mp3'],//0是抽卡音效
+    ['Pokemon.mp3','DigitalMonsters.mp3','MagicConch.mp3','xuebao.mp3'],//从这里开始是Tale-1
     ['Yu-Gi-Oh!.mp3','liangerguang.mp3'],
     ['NARUTO.mp3','pengyou.mp3'],
     ['jojo2.mp3','bengchemailiu.mp3'],
