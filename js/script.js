@@ -40,31 +40,7 @@ function PlayMusic() {
 }
 
 
-window.onload=function(){
-    console.log('a')
-};
-    
-$(document).ready(function PlayMusic() {    
-    //播放音乐
-    //选择音乐列表
-    switch (this['id'].split('_')[0]) {
-        case 'Bard':
-        MusicList = Bard_Spirits;
-        break;
-        case 'Spirits':
-        MusicList = MusicList_Spirits;
-        break;
-    }
-    
-    //选择列表中的音乐
-    let RandomNumber = Math.floor(Math.random() * MusicList[this['id'].split('_')[1]].length);
-    //console.log(RandomNumber)
-    let audioElement = new Audio('./assets/'+ this['id'].split('_')[0] +'/music'+this['id'].split('_')[1]+'/'+MusicList[this['id'].split('_')[1]][RandomNumber]);    
-	audioElement.play();    
-    //振动效果，0.2秒
-    this.classList.add('shake')
-    setTimeout(() => { this.classList.remove('shake') }, 200)
-});
+
 
 
 //精魂诗人 College of Spirits
@@ -107,6 +83,7 @@ const MusicList_Spirits = [
     ]
 
 //绑定元素
+
 const Spirits_1 = document.getElementById('Spirits_1');//按钮——放歌
 const Spirits_2 = document.getElementById('Spirits_2');
 const Spirits_3 = document.getElementById('Spirits_3');
