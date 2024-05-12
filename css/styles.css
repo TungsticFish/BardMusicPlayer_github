@@ -30,6 +30,27 @@ html {
 }
 
 
+.hidden {
+    visibility: hidden;
+}
+
+
+
+.subclass_list {    
+    display: flex;
+    flex-direction: row;
+}
+
+.subclass {
+    border: 1.5px solid black;
+    margin: 6px;
+    padding: 6px;
+
+}
+
+
+
+
 /*精魂故事*/
 .Spirits_College {
 
