@@ -22,7 +22,7 @@ function PlayMusic() {
     //选择音乐列表
     switch (this['id'].split('_')[0]) {
         case 'Bard':
-        MusicList = Bard_Spirits;
+        MusicList = MusicList_Bard;
         break;
         case 'Spirits':
         MusicList = MusicList_Spirits;
@@ -38,6 +38,35 @@ function PlayMusic() {
     this.classList.add('shake')
     setTimeout(() => { this.classList.remove('shake') }, 200)
 }
+
+
+
+//诗人本职
+
+//手动输入歌曲列表。不能有中文
+//似乎可以通过github的api获取repo中子目录的内容列表。https://api.github.com/repos/solomonxie/gists/contents/目录名。但是比较麻烦。
+const MusicList_Bard = [
+    [''],//0-空的，下面开始是本职技能
+    ['youcandoanything.mp3'],//1-诗人激励
+    ['Trump.mp3'],//2-万事通
+    ['3dianyincha.mp3'],//3-休憩曲
+    ['CalmDown.mp3']//4-反迷惑    
+    ]
+
+
+//绑定元素
+const Bard_1 = document.getElementById('Bard_1');
+const Bard_2 = document.getElementById('Bard_2');
+const Bard_3 = document.getElementById('Bard_3');
+const Bard_4 = document.getElementById('Bard_4');
+//添加函数响应
+Bard_1.addEventListener('click', PlayMusic)
+Bard_2.addEventListener('click', PlayMusic)
+Bard_3.addEventListener('click', PlayMusic)
+Bard_4.addEventListener('click', PlayMusic)
+
+
+
 
 
 
@@ -65,7 +94,6 @@ Spirits_0.addEventListener('click', PlayMusic)
 
 
 //手动输入歌曲列表。不能有中文
-//似乎可以通过github的api获取repo中子目录的内容列表。https://api.github.com/repos/solomonxie/gists/contents/目录名。但是比较麻烦。
 const MusicList_Spirits = [
     ['FGO.mp3','GoldenLegend.mp3'],//0是抽卡音效
     ['Pokemon.mp3','DigitalMonsters.mp3','MagicConch.mp3','xuebao.mp3'],//从这里开始是Tale-1
@@ -83,8 +111,7 @@ const MusicList_Spirits = [
     ]
 
 //绑定元素
-
-const Spirits_1 = document.getElementById('Spirits_1');//按钮——放歌
+const Spirits_1 = document.getElementById('Spirits_1');
 const Spirits_2 = document.getElementById('Spirits_2');
 const Spirits_3 = document.getElementById('Spirits_3');
 const Spirits_4 = document.getElementById('Spirits_4');
