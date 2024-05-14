@@ -98,16 +98,22 @@ const No_College = document.getElementById("No_College")
 const Button_Spirits_College = document.getElementById("Spirits_College")
 
 
-const Spirits_College = document.querySelector(".roll_SpiritTales")
+const Spirits_College = document.querySelector(".Spirits_College")
 
 
-No_College.addEventListener('click', function(){
-    Spirits_College.classList.add('hidden')
-},false)
+//应该写一个隐藏所有，然后每个学院都是先隐藏所有，再出现该学院。
+
+function disappear_colleges(){
+    Spirits_College.classList.add('hidden');
+}
+
+
+No_College.addEventListener('click', disappear_colleges)
 
 Button_Spirits_College.addEventListener('click', function(){
-    Spirits_College.classList.remove('hidden') 
-},false)
+    disappear_colleges();
+    Spirits_College.classList.remove('hidden') ;
+})
 
 
 
