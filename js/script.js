@@ -14,7 +14,7 @@
     */
 
 
-
+var audioElement = new Audio(); //保证只有一个音源，在此使用同一全局变量
 
 //核心函数，音乐播放
 function PlayMusic() {    
@@ -31,13 +31,24 @@ function PlayMusic() {
     
     //选择列表中的音乐
     let RandomNumber = Math.floor(Math.random() * MusicList[this['id'].split('_')[1]].length);
-    //console.log(RandomNumber)
-    let audioElement = new Audio('./assets/'+ this['id'].split('_')[0] +'/music'+this['id'].split('_')[1]+'/'+MusicList[this['id'].split('_')[1]][RandomNumber]);    
+    //console.log(audioElement);
+    if (!audioElement.paused) { //audioElement.paused 检测音源是否停止，！取反
+        audioElement.pause();   //如果不是停止，audioElement.pause()给它停了
+      }
+    
+    
+    window.audioElement = new Audio('./assets/'+ this['id'].split('_')[0] +'/music'+this['id'].split('_')[1]+'/'+MusicList[this['id'].split('_')[1]][RandomNumber]);    
 	audioElement.play();    
     //振动效果，0.2秒
     this.classList.add('shake')
     setTimeout(() => { this.classList.remove('shake') }, 200)
 }
+
+
+
+
+
+
 
 
 
