@@ -14,10 +14,11 @@
     */
 
 
-var audioElement = new Audio(); //保证只有一个音源，在此使用同一全局变量
-//console.log(audioElement);
+
+
 
 //核心函数，音乐播放
+var audioElement = new Audio(); //保证只有一个音源，在此使用同一全局变量
 function PlayMusic() {    
     //播放音乐
     //选择音乐列表

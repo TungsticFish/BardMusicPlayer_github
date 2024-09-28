@@ -80,16 +80,13 @@ html {
 .container_1 {
     display: flex;
     flex-direction: column;
-
     border: 2px solid black;
-    justify-content: space-around;
-    
+    justify-content: space-around;    
 }
 
 .row_1{
     display: flex;
     flex-direction: row;
-
     justify-content: space-around;
 }
 
@@ -103,6 +100,12 @@ html {
     margin: 12px;
     padding: 12px;
     border: 1.5px solid black;
+}
+
+.avatar {
+    width:30%;
+    margin-left:35%;
+    margin-right:35%;
 }
 
 
