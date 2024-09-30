@@ -113,7 +113,6 @@ Bard_5.addEventListener('click', roll_ViciousMockery)
 
 
 //子职显示功能
-
 const No_College = document.getElementById("No_College")
 const Button_Spirits_College = document.getElementById("Spirits_College")
 const Button_Creation_College = document.getElementById("Creation_College")
