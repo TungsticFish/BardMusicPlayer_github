@@ -31,7 +31,7 @@ html {
 
 
 .hidden {
-    visibility: hidden;
+    display: none;
 }
 
 
@@ -51,11 +51,12 @@ html {
 
 
 
-/*精魂故事*/
-.Spirits_College {
-
-}
-
+/*精魂学院*/
+.Spirits_College { }
+/*创造学院*/
+.Creation_College { }
+/*页底*/
+.Bottom { }
 
 
 .roll_SpiritTales {   

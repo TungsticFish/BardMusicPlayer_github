@@ -29,6 +29,12 @@ function PlayMusic() {
         case 'Spirits':
         MusicList = MusicList_Spirits;
         break;
+        case 'Creation':
+        MusicList = MusicList_Creation;
+        break;
+        case 'Eloquence':
+        MusicList = MusicList_Eloquence;
+        break;
     }
     
     //选择列表中的音乐
@@ -110,17 +116,19 @@ Bard_5.addEventListener('click', roll_ViciousMockery)
 
 const No_College = document.getElementById("No_College")
 const Button_Spirits_College = document.getElementById("Spirits_College")
+const Button_Creation_College = document.getElementById("Creation_College")
 
 
 const Spirits_College = document.querySelector(".Spirits_College")
+const Creation_College = document.querySelector(".Creation_College")
 
 
 //应该写一个隐藏所有，然后每个学院都是先隐藏所有，再出现该学院。
 
 function disappear_colleges(){
     Spirits_College.classList.add('hidden');
+    Creation_College.classList.add('hidden');
 }
-
 
 No_College.addEventListener('click', disappear_colleges)
 
@@ -129,10 +137,18 @@ Button_Spirits_College.addEventListener('click', function(){
     Spirits_College.classList.remove('hidden') ;
 })
 
+Button_Creation_College.addEventListener('click', function(){
+    disappear_colleges();
+    Creation_College.classList.remove('hidden') ;
+})
+
+//默认显示其中一个学院，选精魂学院。
+disappear_colleges();
+Spirits_College.classList.remove('hidden')
 
 
 
-//精魂诗人 College of Spirits
+//精魂学院 College of Spirits
 
 //投掷一次精魂故事表
 const Spirits_0 = document.getElementById('Spirits_0');//按钮——骰子
@@ -200,8 +216,36 @@ Spirits_12.addEventListener('click', PlayMusic)
 
 
 
+//创造学院 College of Creation
+
+
+//手动输入歌曲列表。不能有中文
+const MusicList_Creation = [
+    [],//0无音效
+    ['kaomianjin.mp3','xianqibolan.mp3'],
+    ['dali.mp3','liuxiang.mp3','CaptainAmerica.mp3','Sherlock.mp3','PerceptionCheck.mp3','meilibudazhe.mp3'],
+    ['leigongzhuwo.mp3','touxi.mp3'],
+    ['mianduikunnan.mp3','tongtoutiebi.mp3'],
+    ['duolaameng.mp3','miaomiaogongju.mp3'],
+    ['guizi.mp3','liuqian.mp3']
+    ]
+
+
+//绑定元素
+const Creation_1 = document.getElementById('Creation_1');
+const Creation_2 = document.getElementById('Creation_2');
+const Creation_3 = document.getElementById('Creation_3');
+const Creation_4 = document.getElementById('Creation_4');
+const Creation_5 = document.getElementById('Creation_5');
+const Creation_6 = document.getElementById('Creation_6');
+//添加函数响应
+Creation_1.addEventListener('click', PlayMusic)
+Creation_2.addEventListener('click', PlayMusic)
+Creation_3.addEventListener('click', PlayMusic)
+Creation_4.addEventListener('click', PlayMusic)
+Creation_5.addEventListener('click', PlayMusic)
+Creation_6.addEventListener('click', PlayMusic)
 
 
 
-
-
+//Eloquence
