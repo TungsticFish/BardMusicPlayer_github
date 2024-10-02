@@ -32,8 +32,8 @@ function PlayMusic() {
         case 'Creation':
         MusicList = MusicList_Creation;
         break;
-        case 'Eloquence':
-        MusicList = MusicList_Eloquence;
+        case 'Lore':
+        MusicList = MusicList_Lore;
         break;
     }
     
@@ -67,10 +67,10 @@ function PlayMusic() {
 //似乎可以通过github的api获取repo中子目录的内容列表。https://api.github.com/repos/solomonxie/gists/contents/目录名。但是比较麻烦。
 const MusicList_Bard = [
     [''],//0-空的，下面开始是本职技能
-    ['youcandoanything.mp3'],//1-诗人激励
-    ['Trump.mp3'],//2-万事通
-    ['3dianyincha.mp3'],//3-休憩曲
-    ['CalmDown.mp3']//4-反迷惑    
+    ['youcandoanything.mp3','wolaizhuni.mp3'],//1-诗人激励
+    ['Trump.mp3','gegeshiqiangxiang.mp3'],//2-万事通
+    ['3dianyincha.mp3','baocaiming.mp3'],//3-休憩曲
+    ['CalmDown.mp3','fanzhaAPP.mp3']//4-反迷惑    
     ]
 
 
@@ -116,17 +116,18 @@ Bard_5.addEventListener('click', roll_ViciousMockery)
 const No_College = document.getElementById("No_College")
 const Button_Spirits_College = document.getElementById("Spirits_College")
 const Button_Creation_College = document.getElementById("Creation_College")
-
+const Button_Lore_College = document.getElementById("Lore_College")
 
 const Spirits_College = document.querySelector(".Spirits_College")
 const Creation_College = document.querySelector(".Creation_College")
-
+const Lore_College = document.querySelector(".Lore_College")
 
 //应该写一个隐藏所有，然后每个学院都是先隐藏所有，再出现该学院。
 
 function disappear_colleges(){
     Spirits_College.classList.add('hidden');
     Creation_College.classList.add('hidden');
+    Lore_College.classList.add('hidden');
 }
 
 No_College.addEventListener('click', disappear_colleges)
@@ -139,6 +140,11 @@ Button_Spirits_College.addEventListener('click', function(){
 Button_Creation_College.addEventListener('click', function(){
     disappear_colleges();
     Creation_College.classList.remove('hidden') ;
+})
+
+Button_Lore_College.addEventListener('click', function(){
+    disappear_colleges();
+    Lore_College.classList.remove('hidden') ;
 })
 
 //默认显示其中一个学院，选精魂学院。
@@ -172,7 +178,7 @@ Spirits_0.addEventListener('click', PlayMusic)
 const MusicList_Spirits = [
     ['FGO.mp3','GoldenLegend.mp3'],//0是抽卡音效
     ['Pokemon.mp3','DigitalMonsters.mp3','MagicConch.mp3','xuebao.mp3'],//从这里开始是Tale-1
-    ['Yu-Gi-Oh!.mp3','liangerguang.mp3'],
+    ['Yu-Gi-Oh!.mp3','liangerguang.mp3','woyaodashige.mp3'],
     ['NARUTO.mp3','pengyou.mp3'],
     ['jojo2.mp3','bengchemailiu.mp3'],
     ['JiuPingZhiMaGuan.mp3','JohnWick.mp3'],
@@ -182,7 +188,7 @@ const MusicList_Spirits = [
     ['ThisisSpata.mp3','Vergil.mp3','wula.mp3'],
     ['DaZaiBian.mp3','Smaug.mp3'],
     ['HeroisNeverDie.mp3','hualiao.mp3'],
-    ['Tekeli-li.mp3','zhugeliang.mp3','TenEvenNineTimes.mp3']    
+    ['Tekeli-li.mp3','zhugeliang.mp3','TenEvenNineTimes.mp3','heirentaiguan.mp3']    
     ]
 
 //绑定元素
@@ -247,4 +253,19 @@ Creation_6.addEventListener('click', PlayMusic)
 
 
 
-//Eloquence
+//逸闻学院 College ofLore
+
+//手动输入歌曲列表。不能有中文
+const MusicList_Lore = [
+    [],//0无音效
+    ['buyaozaidale.mp3','xuanbugeshi.mp3'],
+    ['soeasy.mp3','yaoyaolingxian.mp3']
+    ]
+
+
+//绑定元素
+const Lore_1 = document.getElementById('Lore_1');
+const Lore_2 = document.getElementById('Lore_2');
+//添加函数响应
+Lore_1.addEventListener('click', PlayMusic)
+Lore_2.addEventListener('click', PlayMusic)
