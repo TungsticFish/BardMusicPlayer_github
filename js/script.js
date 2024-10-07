@@ -19,7 +19,7 @@
 
 //核心函数，音乐播放
 var audioElement = new Audio(); //保证只有一个音源，在此使用同一全局变量
-var RandomNumber_compare = 0 //音乐播放的随机数，用以确定上次播放的内容。
+var RandomNumber_compare = Math.floor(Math.random() * 2) //音乐播放的随机数，用以确定上次播放的内容。
 function PlayMusic() {    
     //播放音乐
     //选择音乐列表
@@ -40,8 +40,7 @@ function PlayMusic() {
     
     //选择列表中的音乐
     let RandomNumber = Math.floor(Math.random() * MusicList[this['id'].split('_')[1]].length);
-    //console.log(RandomNumber);
-
+    
     //用来保证此次随机数和上次不同
     if (MusicList[this['id'].split('_')[1]].length >= 2){ //只在列表中有不少于2首音乐时，才能选择和上次不同的音乐
         while  (RandomNumber_compare == RandomNumber) {  
@@ -49,6 +48,8 @@ function PlayMusic() {
             }
         window.RandomNumber_compare = RandomNumber;
     }    
+    //console.log(RandomNumber);
+
 
     //用来停止当前播放的音乐
     if (!audioElement.paused) { //audioElement.paused 检测音源是否停止，！取反
