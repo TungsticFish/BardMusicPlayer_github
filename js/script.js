@@ -79,9 +79,9 @@ function PlayMusic() {
 //似乎可以通过github的api获取repo中子目录的内容列表。https://api.github.com/repos/solomonxie/gists/contents/目录名。但是比较麻烦。
 const MusicList_Bard = [
     [''],//0-空的，下面开始是本职技能
-    ['youcandoanything.mp3','wolaizhuni.mp3'],//1-诗人激励
+    ['youcandoanything.mp3','wolaizhuni.mp3','justdoit.mp3'],//1-诗人激励
     ['Trump.mp3','gegeshiqiangxiang.mp3'],//2-万事通
-    ['3dianyincha.mp3','baocaiming.mp3'],//3-休憩曲
+    ['3dianyincha.mp3','baocaiming.mp3','Delicious_in_Dungeon.mp3'],//3-休憩曲
     ['CalmDown.mp3','fanzhaAPP.mp3']//4-反迷惑    
     ]
 
@@ -270,7 +270,7 @@ Creation_6.addEventListener('click', PlayMusic)
 //手动输入歌曲列表。不能有中文
 const MusicList_Lore = [
     [],//0无音效
-    ['buyaozaidale.mp3','xuanbugeshi.mp3'],
+    ['buyaozaidale.mp3','xuanbugeshi.mp3','RNMtuiqian.mp3'],
     ['soeasy.mp3','yaoyaolingxian.mp3']
     ]
 
