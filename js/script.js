@@ -84,7 +84,7 @@ const MusicList_Bard = [
     ['3dianyincha.mp3','baocaiming.mp3','Delicious_in_Dungeon.mp3'],//3-ÐÝí¬Çú
     ['CalmDown.mp3','fanzhaAPP.mp3'],//4-·´ÃÔ»ó
     ['kongyiji.mp3','ninengwoyeneng.mp3','xiaotougongsi.mp3'],//5-Ä§·¨°ÂÃØ
-    ['zhugeliang.mp3','dinggong.mp3']//6-¶ñ¶¾³°Ð¦
+    ['zhugeliang.mp3','dinggong.mp3','wonengshuozanghuama.mp3']//6-¶ñ¶¾³°Ð¦
     ] 
 
 
