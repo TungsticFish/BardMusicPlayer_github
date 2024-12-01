@@ -1,28 +1,29 @@
-// JavaScript source code
+﻿// JavaScript source code
 
-    /*������ʲôѧԺ������or��ְ����or����
-    Bard-��ְ
-    Lore-����
-    Valor-����
-    Glamour-�Ի�
-    Swords-����
-    Whispers-����
-    Creation-����
-    Eloquence-�۱�
-    Spirits_����
-    Others-����
+    /*区分是什么学院的能力or本职能力or其他
+    Bard-本职
+    Lore-逸闻
+    Valor-勇气
+    Glamour-迷惑
+    Swords-剑舞
+    Whispers-低语
+    Creation-创造
+    Eloquence-雄辩
+    Spirits-精魂
+    Dance-舞蹈
+    Others-其他
     */
 
 
 
 
 
-//���ĺ��������ֲ���
-var audioElement = new Audio(); //��ֻ֤��һ����Դ���ڴ�ʹ��ͬһȫ�ֱ���
-var RandomNumber_compare = Math.floor(Math.random() * 2) //���ֲ��ŵ������������ȷ���ϴβ��ŵ����ݡ�
+//核心函数，音乐播放
+var audioElement = new Audio(); //保证只有一个音源，在此使用同一全局变量
+var RandomNumber_compare = Math.floor(Math.random() * 2) //音乐播放的随机数，用以确定上次播放的内容。
 function PlayMusic() {    
-    //��������
-    //ѡ�������б�
+    //播放音乐
+    //选择音乐列表
     switch (this['id'].split('_')[0]) {
         case 'Bard':
         MusicList = MusicList_Bard;
@@ -35,14 +36,16 @@ function PlayMusic() {
         break;
         case 'Lore':
         MusicList = MusicList_Lore;
+        case 'Dance':
+        MusicList = MusicList_Dance;
         break;
     }
     
-    //ѡ���б��е�����
+    //选择列表中的音乐
     let RandomNumber = Math.floor(Math.random() * MusicList[this['id'].split('_')[1]].length);
     
-    //������֤�˴���������ϴβ�ͬ
-    if (MusicList[this['id'].split('_')[1]].length >= 2){ //ֻ���б����в�����2������ʱ������ѡ����ϴβ�ͬ������
+    //用来保证此次随机数和上次不同
+    if (MusicList[this['id'].split('_')[1]].length >= 2){ //只在列表中有不少于2首音乐时，才能选择和上次不同的音乐
         while  (RandomNumber_compare == RandomNumber) {  
         RandomNumber = Math.floor(Math.random() * MusicList[this['id'].split('_')[1]].length);
             }
@@ -51,16 +54,16 @@ function PlayMusic() {
     //console.log(RandomNumber);
 
 
-    //����ֹͣ��ǰ���ŵ�����
-    if (!audioElement.paused) { //audioElement.paused �����Դ�Ƿ�ֹͣ����ȡ��
-        audioElement.pause();   //�������ֹͣ��audioElement.pause()����ͣ��
+    //用来停止当前播放的音乐
+    if (!audioElement.paused) { //audioElement.paused 检测音源是否停止，！取反
+        audioElement.pause();   //如果不是停止，audioElement.pause()给它停了
       }
     
 
-    window.audioElement = new Audio('./assets/'+ this['id'].split('_')[0] +'/music'+this['id'].split('_')[1]+'/'+MusicList[this['id'].split('_')[1]][RandomNumber]);    
+    audioElement.src='./assets/'+ this['id'].split('_')[0] +'/music'+this['id'].split('_')[1]+'/'+MusicList[this['id'].split('_')[1]][RandomNumber];    
 	audioElement.play(); 
 
-    //��Ч����0.2��
+    //振动效果，0.2秒
     this.classList.add('shake')
     setTimeout(() => { this.classList.remove('shake') }, 200)
 }
@@ -73,29 +76,27 @@ function PlayMusic() {
 
 
 
-//ʫ�˱�ְ
+//诗人本职
 
-//�ֶ���������б�������������
-//�ƺ�����ͨ��github��api��ȡrepo����Ŀ¼�������б���https://api.github.com/repos/solomonxie/gists/contents/Ŀ¼�������ǱȽ��鷳��
+
+//似乎可以通过github的api获取repo中子目录的内容列表。https://api.github.com/repos/solomonxie/gists/contents/目录名。但是比较麻烦。
 const MusicList_Bard = [
-    [''],//0-�յģ����濪ʼ�Ǳ�ְ����
-    ['youcandoanything.mp3','wolaizhuni.mp3','justdoit.mp3','EVA.mp3','nibeiqianghuale.mp3'],//1-ʫ�˼���
-    ['Trump.mp3','gegeshiqiangxiang.mp3'],//2-����ͨ
-    ['3dianyincha.mp3','baocaiming.mp3','Delicious_in_Dungeon.mp3'],//3-������
-    ['CalmDown.mp3','fanzhaAPP.mp3'],//4-���Ի�
-    ['kongyiji.mp3','ninengwoyeneng.mp3','xiaotougongsi.mp3'],//5-ħ������
-    ['zhugeliang.mp3','dinggong.mp3','wonengshuozanghuama.mp3']//6-�񶾳�Ц
+    [''],//0-空的，下面开始是本职技能
+    ['youcandoanything.mp3','我来助你.mp3','justdoit.mp3','EVA.mp3','你被强化了，快上.mp3'],//1-诗人激励
+    ['Trump.mp3','各个是强项.mp3'],//2-万事通
+    ['3点了，饮茶先.mp3','报菜名.mp3','迷宫饭.mp3'],//3-休憩曲
+    ['你清醒一点.mp3','反诈APP.mp3'],//4-反迷惑
+    ['孔乙己.mp3','你能我也能.mp3','小偷公司.mp3'],//5-魔法奥秘
+    ['诸葛亮骂死王朗.mp3','钉宫三连.mp3','我能说脏话吗.mp3']//6-恶毒嘲笑
     ] 
-
-
-//��Ԫ��
+//绑定元素
 const Bard_1 = document.getElementById('Bard_1');
 const Bard_2 = document.getElementById('Bard_2');
 const Bard_3 = document.getElementById('Bard_3');
 const Bard_4 = document.getElementById('Bard_4');
 const Bard_5 = document.getElementById('Bard_5');
 const Bard_6 = document.getElementById('Bard_6');
-//���Ӻ�����Ӧ
+//添加函数响应
 Bard_1.addEventListener('click', PlayMusic)
 Bard_2.addEventListener('click', PlayMusic)
 Bard_3.addEventListener('click', PlayMusic)
@@ -104,25 +105,23 @@ Bard_5.addEventListener('click', PlayMusic)
 Bard_6.addEventListener('click', PlayMusic)
 
 
-//�������ר��
-//������Ӵʿ�of����֮��3������https://ngabbs.com/read.php?tid=39108352
-//��Ϊ��ʾ���������⣬�о���js��html�ı��벻�Ը����������������unicode�����
-Vicious_Mockery_list_CN=["\u77ee\uff0c\u632b\uff0c\u7a77\u3002","\u7231\u8214\u522b\u4eba\u811a\u8dbe\u7684\u86c6\u866b\uff01","\u7231\u8214\u75ae\u75c2\u7684\u4e5e\u4e10\uff01","\u80ae\u810f\u7684\u5b7d\u755c\uff01","\u88ab\u72fc\u64cd\u7684\u5bb6\u4f19\uff01","\u5175\u4eba\u73a9\u5177\u90fd\u6bd4\u4f60\u5389\u5bb3\u3002","\u81ed\u6c14\u718f\u5929\u7684\u8113\u5305\u3002","\u51fa\u6765\uff0c\u7578\u5f62\uff01","\u755c\u751f\uff01","\u6253\u626e\u597d\u70b9 \u2014\u2014 \u9b3c\u5a46\u6765\u62db\u4eba\u4e86\u3002","\u6253\u4f60\u4f1a\u5f04\u810f\u6211\u7684\u624b\u3002","\u5927\u4fbf\u4e4b\u738b\uff0c\u7caa\u5751\u4e4b\u4e3b\uff01","\u6234\u7eff\u5e3d\u7684\u8001\u53e4\u8463\uff01","\u5730\u72f1\u95fb\u5230\u4f60\u7684\u6076\u81ed\u90fd\u8981\u4f5c\u5455\u3002","\u6076\u6bd2\u3001\u8150\u70c2\u7684\u5c0f\u4fbf\u866b\uff01","\u8d76\u7d27\u7528\u80f6\u5e03\u628a\u5634\u5df4\u5c01\u8d77\u6765\u5427\u3002","\u9b3c\u5a46\u90fd\u4e0d\u642d\u7406\u7684\u4eba\u6e23\u3002","\u6eda\u86cb\u5427\uff0c\u6ee1\u8138\u75d8\u75d8\u7684\u8822\u8d27\u3002","\u6eda\u86cb\u5427\uff0c\u6ee1\u8138\u75d8\u75d8\u7684\u75af\u5b50\u3002","\u6eda\u86cb\u5427\uff0c\u8113\u5305\u3002","\u6eda\u56de\u4f60\u5988\u7684\u809b\u95e8\u91cc\u53bb\u5427\u3002","\u6eda\u5f00\uff0c\u4f60\u81ed\u6b7b\u6211\u4e86\uff01","\u6eda\u5f00\uff0c\u4f60\u7684\u6076\u81ed\u628a\u6211\u773c\u6cea\u90fd\u718f\u51fa\u6765\u4e86\uff01","\u6eda\u5f00\uff0c\u53c8\u81ed\u53c8\u4e11\u7684\u5bb6\u4f19\uff01","\u6eda\u8fdc\u70b9\uff0c\u4f60\u4e2a\u6ee1\u8138\u75d8\u5b50\u7684\u5b37\u5b37\uff01","\u54c8\uff01\u662f\u4e00\u5768\u7caa\u7403\uff01","\u8fd8\u8981\u4f60\u7684\u767d\u75f4\u8001\u5a18\u7ed9\u4f60\u7a7f\u8863\u670d\u5417\uff1f","\u597d\u4e00\u6761\u80a5\u7855\u7684\u6cbc\u6cfd\u86c6\u866b\uff01","\u574f\u6b7b\u7684\u8001\u6bd2\u7269\u3002","\u6d51\u8eab\u574f\u75bd\u7684\u6b8b\u6e23\uff01","\u6d51\u8eab\u5c3f\u9a9a\u5473\u7684\u8001\u987d\u56fa\u3002","\u72e1\u733e\u7684\u53d8\u6001\u72c2\uff01","\u5c31\u8fde\u5730\u72f1\u751f\u7269\u4e5f\u4f1a\u88ab\u4f60\u7684\u81ed\u5473\u718f\u5012\u3002","\u770b\u554a\uff01\u662f\u4f0a\u5c14\u660e\u65af\u7279\u7684\u86cb\u6bdb\uff01","\u770b\u554a\uff01\u662f\u4f0a\u5c14\u660e\u65af\u7279\u7684\u86cb\u6bdb\uff01","\u770b\u554a\uff0c\u90a3\u5768\u51c4\u60e8\u7684\u5206\u6ccc\u7269\u3002","\u770b\u54ea\uff0c \u8822\u6750\u4e2d\u7684\u8822\u6750\u3002","\u770b\u5440\uff0c\u4ed6\u7684\u773c\u775b\u6f0f\u5c3f\u4e86\u3002","\u770b\u5440\uff0c\u4ed6\u7684\u773c\u775b\u5c3f\u4e86\u3002","\u908b\u9062\u7684\u6d41\u6c13\uff01","\u8001\u8272\u80da\uff01","\u8fde\u87d1\u8782\u90fd\u77a7\u4e0d\u8d77\u7684\u5c0f\u4e11\u3002","\u6d41\u8113\u7684\u86c6\u3002","\u6ee1\u8eab\u81ed\u866b\u7684\u5783\u573e\uff01","\u6ee1\u8eab\u81ed\u5473\u7684\u5783\u573e\uff01","\u6ca1\u7528\u7684\u80c6\u5c0f\u9b3c\uff01","\u6ca1\u7528\u7684\u5e9f\u7269\uff01","\u4f60\u7238\u4e0d\u662f\u6bd4\u76ee\u9c7c\u5417\uff1f","\u4f60\u7238\u771f\u7684\u4e0d\u662f\u6bd4\u76ee\u9c7c\u5417\uff1f","\u4f60\u6bd4\u5730\u7cbe\u8fd8\u8822\uff01","\u4f60\u6bd4\u8150\u70c2\u7684\u9985\u997c\u8fd8\u81ed\u3002","\u4f60\u6bd4\u8150\u70c2\u7684\u9c7c\u8fd8\u81ed\uff01","\u4f60\u6bd4\u70e4\u8089\u8fd8\u6cb9\u817b\u3002","\u4f60\u6bd4\u70e4\u5ea7\u72fc\u8089\u8fd8\u6cb9\u817b\u3002","\u4f60\u7684\u4e11\u964b\u65e0\u6cd5\u7528\u8bed\u8a00\u5f62\u5bb9\u3002","\u4f60\u7684\u8822\u5988\u5988\u628a\u4f60\u9609\u4e86\u5417\uff1f","\u4f60\u7684\u5200\u50cf\u732a\u777e\u4e38\u4e00\u6837\u950b\u5229\u3002","\u4f60\u7684\u673a\u667a\u90fd\u5feb\u8d76\u4e0a\u6c34\u6876\u4e86\uff01","\u4f60\u7684\u8138\u76ae\u6bd4\u57ce\u5899\u8fd8\u539a\u3002","\u4f60\u7684\u8111\u888b\u5c31\u548c\u50ac\u503a\u4eba\u7684\u94b1\u5305\u4e00\u6837\u7a7a\u7a7a\u5982\u4e5f\u3002","\u4f60\u7684\u8111\u91cf\u8fde\u5582\u9971\u8671\u5b50\u90fd\u4e0d\u591f\u3002","\u4f60\u7684\u8eab\u677f\u5b50\u6bd4\u7a00\u7ca5\u8fd8\u5f31\u3002","\u4f60\u7684\u8eab\u4f53\u5c31\u662f\u4e00\u4e2a\u5e99\uff0c\u4f8d\u5949\u767d\u75f4\u4e4b\u795e\u7684\u5e99\u3002","\u4f60\u7684\u65e0\u804a\u80fd\u8ba9\u7cbe\u7075\u7761\u7740\uff01","\u4f60\u7684\u65e0\u8da3\u80fd\u8ba9\u7cbe\u7075\u7761\u7740\uff01","\u4f60\u7684\u5634\u6bd4\u5c41\u80a1\u8fd8\u5927\uff0c\u5c4e\u6bd4\u553e\u6cab\u8fd8\u591a\u3002","\u4f60\u4e2a\u7b28\u86cb\u3002","\u4f60\u5149\u547c\u5438\u80fd\u8ba9\u6b7b\u4eba\u6b7b\u4e24\u6b21\u4e86\u3002","\u4f60\u53ef\u771f\u662f\u81ed\u6c14\u718f\u5929\u554a\u3002","\u4f60\u5988\u662f\u88ab\u761f\u75ab\u8001\u9f20\u64cd\u4e86\u5417\uff1f","\u4f60\u662f\u80bf\u56ca\u3002\u4f60\u662f\u7578\u5f62\u7684\u8089\u7624\u3002","\u4f60\u6c61\u67d3\u4e86\u6211\u7684\u773c\u775b\u548c\u9f3b\u5b54\u3002","\u4f60\u600e\u4e48\u95fb\u8d77\u6765\u4e00\u80a1\u80ce\u76d8\u7684\u5473\u9053\uff1f","\u4f60\u600e\u4e48\u95fb\u8d77\u6765\u6709\u80ce\u76d8\u7684\u5473\u9053\uff1f","\u4f60\u8fd9\u7231\u8214\u522b\u4eba\u811a\u8dbe\u7684\u86c6\u866b\uff01","\u4f60\u8fd9\u6b8b\u75be\u7329\u7329\uff01","\u4f60\u8fd9\u77ed\u817f\u52a8\u7269\uff01","\u4f60\u8fd9\u4e2a\u5927\u8179\u4fbf\u4fbf\u3001\u6d51\u8eab\u5316\u8113\u7684\u9a6c\u5c41\u7cbe\uff01","\u4f60\u8fd9\u4e2a\u80a5\u80a5\u9a6c\u5c41\u7cbe\uff01","\u4f60\u8fd9\u8fc7\u8857\u8001\u9f20\uff01","\u4f60\u8fd9\u574f\u6b7b\u7684\u6728\u6869\u5b50\uff01","\u4f60\u8fd9\u9ec4\u94c1\u5976\u5934\uff01","\u4f60\u8fd9\u7578\u5f62\u7684\u5c0f\u80bf\u56ca\uff01","\u4f60\u8fd9\u89c1\u4e0d\u5f97\u4eba\u7684\u732a\u3002","\u4f60\u8fd9\u53ef\u6076\u7684\u6c34\u6ce1 \u2014\u2014 \u6211\u8981\u523a\u7a7f\u4f60\u3002","\u4f60\u8fd9\u6e83\u70c2\u7684\u8113\u5305\uff01","\u4f60\u8fd9\u8fde\u87d1\u8782\u90fd\u77a7\u4e0d\u8d77\u7684\u5c0f\u4e11\u3002","\u4f60\u8fd9\u5c3f\u9891\u5c3f\u6025\u7684\u795e\u7ecf\u75c5","\u4f60\u8fd9\u8671\u5b50\uff0c\u4f60\u8fd9\u87a8\u866b\uff01","\u4f60\u8fd9\u5768\u6563\u53d1\u6076\u81ed\u7684\u5927\u7caa\uff01","\u4f60\u88c5\u5f97\u50cf\u4e2a\u6218\u58eb\uff0c\u4f46\u50bb\u5b50\u7ec8\u7a76\u662f\u50bb\u5b50\u3002","\u5c3f\u9891\u5c3f\u6025\u7684\u9ebb\u5b50\uff01","\u77a7\uff0c\u597d\u4e00\u4e2a\u5471\u566a\u7684\u5012\u9709\u86cb\uff01","\u7403\u5f62\u996d\u6876\u3002","\u4eba\u50bb\u8bdd\u591a\uff01","\u4eba\u50bb\u8bdd\u591a\u7684\u5bb6\u4f19\uff01","\u8ba4\u8bc6\u4f60\u771f\u4ee4\u6211\u4f5c\u5455\u3002","\u8f6f\u5f31\u7684\u8815\u866b\uff01","\u5341\u6761\u9cb6\u9c7c\u52a0\u5728\u4e00\u8d77\u90fd\u6ca1\u4f60\u6e7f\uff01","\u662f\u8c7a\u72fc\u4eba\u628a\u4f60\u7684\u8138\u5403\u4e86\u53c8\u62c9\u51fa\u6765\u4e86\u554a\uff1f","\u662f\u54ea\u5934\u72fc\u628a\u4f60\u7ed9\u5410\u51fa\u6765\u7684\uff1f","\u662f\u54ea\u53ea\u5ea7\u72fc\u628a\u4f60\u56bc\u8fc7\u4e4b\u540e\u53c8\u5410\u51fa\u6765\u7684\uff1f","\u6b7b\u5988\u7684\u5c0f\u6bdb\u8d3c\uff01","\u6b7b\u4ea1\u662f\u4f60\u7684\u5f52\u5bbf\u3002","\u542c\u597d\u4e86\uff01\u4f60\u662f\u4e00\u5768\u7caa\u7403\uff01","\u541e\u5730\u7cbe\u5927\u4fbf\u7684\u5bb6\u4f19\uff01","\u6211\u7684\u654c\u4eba\u53c8\u8822\u53c8\u5f31\u3002","\u6211\u7684\u4eba\u751f\uff0c\u7b2c12\u7ae0\uff0c\u65e0\u804a\u7684\u5bf9\u624b...","\u6211\u4eec\u8fd8\u662f\u4e0d\u8981\u8ba4\u8bc6\u7684\u597d\u3002","\u6211\u8981\u624e\u7a7f\u4f60\u7684\u8138\uff0c\u6076\u68cd\uff01","\u65e0\u80fd\u72c2\u6012\u4f60\u6700\u4f1a\uff01","\u559c\u6b22\u8214\u75ae\u75c2\u7684\u6d41\u6d6a\u6c49\uff01","\u73b0\u5728\u662f\u590f\u5929\u5417\uff1f\u4f60\u600e\u4e48\u6c57\u6d41\u6d43\u80cc\u554a\u3002","\u732e\u7ed9\u4f60\uff0c\u89d2\u957f\u8138\u4e0a\u7684\u5bb6\u4f19\u3002","\u60f3\u8981\u6211\u6b4c\u9882\u4f60\u5417\uff1f\u53ea\u6709\u4f60\u8eab\u4e0a\u7684\u81ed\u5473\u503c\u5f97\u6b4c\u9882\u3002","\u7f8a\u76ae\u7eb8\u7cca\u51fa\u6765\u7684\u55bd\u5570\u3002","\u8981\u6211\u628a\u4f60\u548c\u6bcd\u732a\u7684\u5c41\u4f5c\u6bd4\u8f83\u5417\uff1f","\u4e00\u4efd\u8584\u793c\uff0c\u732e\u7ed9\u6700\u8ba8\u538c\u7684\u90bb\u5c45\u3002","\u6655\u5c3f\u7684\u8bdd\u75e8\u3002","\u6742\u79cd\u5c0f\u6bdb\u8d3c\uff01","\u6ce8\u610f\u4e86\uff0c\u8fd9\u4e2a\u5783\u573e\u8c0e\u8bdd\u8fde\u7bc7\u3002","\u6ce8\u610f\u8fd9\u4e2a\u81ea\u6211\u81a8\u80c0\u7684\u5bb6\u4f19\uff01","\u4f5c\u4e3a\u4e00\u4e2a\u62d6\u540e\u817f\u7684\uff0c\u4f60\u7684\u4e0b\u573a\u53ea\u6709\u5931\u8d25\u3002"]
-Vicious_Mockery_list_EN=["Twit, twat, twerp.","Toenail-tasting trouthole!","Scab-licking vagrant!","Feculent beast!","Worg-rutting wrong-wrinkler!","Sod this for a game of soldiers.","Rank, malodorous pustule.","Out, foul deformity!","Feculent beast!","Dress thy face - the hags are hiring.","Beating thee would soil my hands.","Majesty of manure, sovereign of shit!","Cuckold-courting curmudgeon!","Even Hell'd gag on your bedevilled stench.","Pernicious, putrefying pissant!","Tape your bottom-mouth shut.","Hag-shouldered scum-vestige.","Begone, pox-faced loon.","Begone, pox-faced loon.","Get thee gone, custardous discharge.","Back to the anus that spat you out.","Away, eye-watering stench!","Away, eye-watering stench!","Begone, putrid boil!","Away, you pox'd nun!","Hark! A dung golem!","Didst your idiot mother beclothe you?","Burgeoning bog-botherer!","Poisonous, necrotic appendage.","Thou necrotic stump!","Piss-addled pontificator.","Poxy pissered pervert!","Even Hell'd gag on your bedevilled stench.","Behold! Elminster's ballbag.","Behold! Elminster's ball-bag.","There - a miserable pile of secretion.","Behold, the fool of fools.","Thine eyes - pools of tepid piss.","Thine eyes - pools of tepid piss.","Crusty rogue.","Love-limb of a lecherous lich!","Thou roach-mocked jester.","Pus-supping maggot.","Lice-ridden cur!","Lice-ridden cur!","Clag-bottomed coward!","Lily-lunged limpet-luster!","Was't your father a flounder?","Was't your father a flounder?","Thou goblin-goo-gobbler!","Spurious prune-tart.","Thou fetid fish, thou rancid shark!","You're greasier than a worg-roast.","You're greasier than a worg-roast.","You've a visage fit for letter-writing.","Didst your idiot mother beclothe you?","Sharp as a pig's testicle.","Barrel-sharp, the wit on you.","Thick as a glob of unguent.","Your head's empty as a debtor's purse.","You've barely brain to feed a louse.","Thou art saucy as gruel.","Your body's a temple - to an idiot god.","You could send an elf to sleep!","You could send an elf to sleep!","Mouthier than an arse, twice as full o' shite.","You spherical git.","Your breath'd kill the dead twice over.","There's a hag-pit stench about you.","Didst thou mother sex a plague-rat?","You cyst. You misshapen flesh-lump.","You infect mine eyes and nostrils.","Why smell thou of placenta-musk?","Why smell thou of placenta-musk?","Toenail-tasting trouthole!","Threadbare chimp-lackey!","Thou bandy-legged brindle-hole!","You gorbellied, purulent horse-ass!","You gorbellied, purulent horse-ass!","Thou quivering plague rat!","Thou necrotic stump!","Thou pyrite-loving tit.","You cyst. You misshapen flesh-lump.","Thou inglorious hog.","You're a vile blister - I shall prick thee.","You festering bubo!","Thou roach-mocked jester.","Thou latrine-loving leper!","You louse, you mite!","You're dung-pretty and scented to wit!","You act a fighter, but a fool's a fool.","Thou latrine-loving leper!","Behold, a most noisy cuck!","You spherical git.","Limp-witted slick-licker.","Limp-witted slick-licker.","It vexes me to know of you.","Fudge-fondling fustilarian!","Wetter than a ten-tongued tarpon!","Gnoll eat your face and shit it out?","Which worg upchucked you?","Which worg upchucked you?","Thou art a hairy-hearted whoreson!","Death becomes you.","Hark! A dung golem!","Thou goblin-goo-gobbler!","How flaccid is my foolish foe.","'My Life, Part 12, The Boring Opponent...'","We'd make better strangers.","Prick thy face, villainous prick!","Pizzled rancour!","Scab-licking vagrant!","Like a summer's day - thou art sweaty.","For you, oh horned cheek.","An ode for you? Odour, mayhaps.","Parchment-pallored villain.","Shall I compare thee to a sow's fart?","A gift for a loathsome neighbour.","Piss-addled pontificator.","Thou art a hairy-hearted whoreson!","Note this trunk of lies.","Regard this spontaneous flatulater!","As the leg, you'll end in defeat."]
-
-
-const result_ViciousMockery = document.getElementById("result_ViciousMockery")//�������
+//恶言相加专门
+//恶言相加词库of博得之门3，来自https://ngabbs.com/read.php?tid=39108352
+//因为显示中文有问题，感觉是js和html的编码不对付，这里的中文是用unicode编码的
+Vicious_Mockery_list_CN=["滚回你妈的肛门里去吧。","是哪只座狼把你嚼过之后又吐出来的？","你的身板子比稀粥还弱。","认识你真令我作呕。","鬼婆都不搭理的人渣。","你这黄铁奶头！","你光呼吸能让死人死两次了。","十条鲶鱼加在一起都没你湿！","流脓的蛆。","滚远点，你个满脸痘子的嬷嬷！","连蟑螂都瞧不起的小丑。","尿频尿急的麻子！","你的身体就是一个庙，侍奉白痴之神的庙。","要我把你和母猪的屁作比较吗？","瞧，好一个呱噪的倒霉蛋！","矮，挫，穷。","作为一个拖后腿的，你的下场只有失败。","你这见不得人的猪。","你比腐烂的馅饼还臭。","想要我歌颂你吗？只有你身上的臭味值得歌颂。","赶紧用胶布把嘴巴封起来吧。","吞地精大便的家伙！","坏死的老毒物。","还要你的白痴老娘给你穿衣服吗？","献给你，角长脸上的家伙。","你可真是臭气熏天啊。","爱舔疮痂的乞丐！","你的脸皮比城墙还厚。","滚蛋吧，满脸痘痘的蠢货。","看啊，那坨凄惨的分泌物。","我的敌人又蠢又弱。","滚开，又臭又丑的家伙！","死亡是你的归宿。","出来，畸形！","恶毒、腐烂的小便虫！","看呀，他的眼睛尿了。","死妈的小毛贼！","我要扎穿你的脸，恶棍！","晕尿的话痨。","你的蠢妈妈把你阉了吗？","你比地精还蠢！","你的丑陋无法用语言形容。","你怎么闻起来有胎盘的味道？","你这爱舔别人脚趾的蛆虫！","戴绿帽的老古董！","你这个肥肥马屁精！","你的刀像猪睾丸一样锋利。","你的嘴比屁股还大，屎比唾沫还多。","你这坨散发恶臭的大粪！","哈！是一坨粪球！","打扮好点 —— 鬼婆来招人了。","是豺狼人把你的脸吃了又拉出来了啊？","你这溃烂的脓包！","满身臭味的垃圾！","你这过街老鼠！","看哪， 蠢材中的蠢材。","你这坏死的木桩子！","滚蛋吧，满脸痘痘的疯子。","你比腐烂的鱼还臭！","我的人生，第12章，无聊的对手...","你这尿频尿急的神经病","你这连蟑螂都瞧不起的小丑。","你个笨蛋。","喜欢舔疮痂的流浪汉！","滚开，你臭死我了！","一份薄礼，献给最讨厌的邻居。","畜生！","大便之王，粪坑之主！","你的无趣能让精灵睡着！","滚蛋吧，脓包。","你的脑量连喂饱虱子都不够。","臭气熏天的脓包。","你比烤肉还油腻。","你这可恶的水泡 —— 我要刺穿你。","你这畸形的小肿囊！","就连地狱生物也会被你的臭味熏倒。","是哪头狼把你给吐出来的？","你的机智都快赶上水桶了！","你的脑袋就和催债人的钱包一样空空如也。","你装得像个战士，但傻子终究是傻子。","没用的废物！","被狼操的家伙！","看啊！是伊尔明斯特的蛋毛！","老色胚！","狡猾的变态狂！","现在是夏天吗？你怎么汗流浃背啊。","你这短腿动物！","好一条肥硕的沼泽蛆虫！","你妈是被瘟疫老鼠操了吗？","你爸真的不是比目鱼吗？","没用的胆小鬼！","无能狂怒你最会！","人傻话多的家伙！","邋遢的流氓！","你这残疾猩猩！","注意了，这个垃圾谎话连篇。","软弱的蠕虫！","你这虱子，你这螨虫！","注意这个自我膨胀的家伙！","我们还是不要认识的好。","羊皮纸糊出来的喽啰。","你污染了我的眼睛和鼻孔。","打你会弄脏我的手。","兵人玩具都比你厉害。","地狱闻到你的恶臭都要作呕。","你怎么闻起来一股胎盘的味道？","你爸不是比目鱼吗？","肮脏的孽畜！","看呀，他的眼睛漏尿了。","满身臭虫的垃圾！","爱舔别人脚趾的蛆虫！","你这个大腹便便、浑身化脓的马屁精！","浑身坏疽的残渣！","人傻话多！","看啊！是伊尔明斯特的蛋毛！","球形饭桶。","杂种小毛贼！","滚开，你的恶臭把我眼泪都熏出来了！","浑身尿骚味的老顽固。","听好了！你是一坨粪球！","你的无聊能让精灵睡着！","你比烤座狼肉还油腻。","你是肿囊。你是畸形的肉瘤。"]
+Vicious_Mockery_list_EN=["Back to the anus that spat you out.","Which worg upchucked you?","Thou art saucy as gruel.","It vexes me to know of you.","Hag-shouldered scum-vestige.","Thou pyrite-loving tit.","Your breath'd kill the dead twice over.","Wetter than a ten-tongued tarpon!","Pus-supping maggot.","Away, you pox'd nun!","Thou roach-mocked jester.","Thou latrine-loving leper!","Your body's a temple - to an idiot god.","Shall I compare thee to a sow's fart?","Behold, a most noisy cuck!","Twit, twat, twerp.","As the leg, you'll end in defeat.","Thou inglorious hog.","Spurious prune-tart.","An ode for you? Odour, mayhaps.","Tape your bottom-mouth shut.","Thou goblin-goo-gobbler!","Poisonous, necrotic appendage.","Didst your idiot mother beclothe you?","For you, oh horned cheek.","There's a hag-pit stench about you.","Scab-licking vagrant!","Thick as a glob of unguent.","Begone, pox-faced loon.","There - a miserable pile of secretion.","How flaccid is my foolish foe.","Begone, putrid boil!","Death becomes you.","Out, foul deformity!","Pernicious, putrefying pissant!","Thine eyes - pools of tepid piss.","Thou art a hairy-hearted whoreson!","Prick thy face, villainous prick!","Piss-addled pontificator.","Didst your idiot mother beclothe you?","Thou goblin-goo-gobbler!","You've a visage fit for letter-writing.","Why smell thou of placenta-musk?","Toenail-tasting trouthole!","Cuckold-courting curmudgeon!","You gorbellied, purulent horse-ass!","Sharp as a pig's testicle.","Mouthier than an arse, twice as full o' shite.","You're dung-pretty and scented to wit!","Hark! A dung golem!","Dress thy face - the hags are hiring.","Gnoll eat your face and shit it out?","You festering bubo!","Lice-ridden cur!","Thou quivering plague rat!","Behold, the fool of fools.","Thou necrotic stump!","Begone, pox-faced loon.","Thou fetid fish, thou rancid shark!","My Life, Part 12, The Boring Opponent...","Thou latrine-loving leper!","Thou roach-mocked jester.","You spherical git.","Scab-licking vagrant!","Away, eye-watering stench!","A gift for a loathsome neighbour.","Feculent beast!","Majesty of manure, sovereign of shit!","You could send an elf to sleep!","Get thee gone, custardous discharge.","You've barely brain to feed a louse.","Rank, malodorous pustule.","You're greasier than a worg-roast.","You're a vile blister - I shall prick thee.","You cyst. You misshapen flesh-lump.","Even Hell'd gag on your bedevilled stench.","Which worg upchucked you?","Barrel-sharp, the wit on you.","Your head's empty as a debtor's purse.","You act a fighter, but a fool's a fool.","Lily-lunged limpet-luster!","Worg-rutting wrong-wrinkler!","Behold! Elminster's ball-bag.","Love-limb of a lecherous lich!","Poxy pissered pervert!","Like a summer's day - thou art sweaty.","Thou bandy-legged brindle-hole!","Burgeoning bog-botherer!","Didst thou mother sex a plague-rat?","Was't your father a flounder?","Clag-bottomed coward!","Pizzled rancour!","Limp-witted slick-licker.","Crusty rogue.","Threadbare chimp-lackey!","Note this trunk of lies.","Fudge-fondling fustilarian!","You louse, you mite!","Regard this spontaneous flatulater!","We'd make better strangers.","Parchment-pallored villain.","You infect mine eyes and nostrils.","Beating thee would soil my hands.","Sod this for a game of soldiers.","Even Hell'd gag on your bedevilled stench.","Why smell thou of placenta-musk?","Was't your father a flounder?","Feculent beast!","Thine eyes - pools of tepid piss.","Lice-ridden cur!","Toenail-tasting trouthole!","You gorbellied, purulent horse-ass!","Thou necrotic stump!","Limp-witted slick-licker.","Behold! Elminster's ballbag.","You spherical git.","Thou art a hairy-hearted whoreson!","Away, eye-watering stench!","Piss-addled pontificator.","Hark! A dung golem!","You could send an elf to sleep!","You're greasier than a worg-roast.","You cyst. You misshapen flesh-lump."]
+const result_ViciousMockery = document.getElementById("result_ViciousMockery")//掷骰结果
 function roll_ViciousMockery() {
-    //�������ʾ
+    //随机并显示
     result_ViciousMockery.innerHTML = '';
     t_random = Math.floor(Math.random()*Vicious_Mockery_list_CN.length)
     if (Vicious_Mockery_list_CN.length = Vicious_Mockery_list_EN.length) {
         result_ViciousMockery.innerHTML =  Vicious_Mockery_list_CN[t_random] + "    #    " + Vicious_Mockery_list_EN[t_random];
     } else {
-        result_ViciousMockery.innerHTML =  Vicious_Mockery_list_CN[t_random] //��ֹ��Ӣ�Ĳ�ƥ��
+        result_ViciousMockery.innerHTML =  Vicious_Mockery_list_CN[t_random] //防止中英文不匹配
     }
-    //��Ч��
-    result_ViciousMockery.classList.add('shake')//��δ�������https://blog.csdn.net/qq_39147299/article/details/126726159 
+    //振动效果
+    result_ViciousMockery.classList.add('shake')//这段代码来自https://blog.csdn.net/qq_39147299/article/details/126726159 
     setTimeout(() => { result_ViciousMockery.classList.remove('shake') }, 500)
 }
 Bard_6.addEventListener('click', roll_ViciousMockery)
@@ -130,22 +129,23 @@ Bard_6.addEventListener('click', roll_ViciousMockery)
 
 
 
-//��ְ��ʾ����
+//子职显示功能
 const No_College = document.getElementById("No_College")
 const Button_Spirits_College = document.getElementById("Spirits_College")
 const Button_Creation_College = document.getElementById("Creation_College")
 const Button_Lore_College = document.getElementById("Lore_College")
+const Button_Dance_College = document.getElementById("Dance_College")
 
 const Spirits_College = document.querySelector(".Spirits_College")
 const Creation_College = document.querySelector(".Creation_College")
 const Lore_College = document.querySelector(".Lore_College")
+const Dance_College = document.querySelector(".Dance_College")
 
-//Ӧ��дһ���������У�Ȼ��ÿ��ѧԺ�������������У��ٳ��ָ�ѧԺ��
-
-function disappear_colleges(){
+function disappear_colleges(){    //隐藏所有函数，然后每个学院都是先隐藏所有，再出现该学院。
     Spirits_College.classList.add('hidden');
     Creation_College.classList.add('hidden');
     Lore_College.classList.add('hidden');
+    Dance_College.classList.add('hidden');
 }
 
 No_College.addEventListener('click', disappear_colleges)
@@ -154,62 +154,58 @@ Button_Spirits_College.addEventListener('click', function(){
     disappear_colleges();
     Spirits_College.classList.remove('hidden') ;
 })
-
 Button_Creation_College.addEventListener('click', function(){
     disappear_colleges();
     Creation_College.classList.remove('hidden') ;
 })
-
 Button_Lore_College.addEventListener('click', function(){
     disappear_colleges();
     Lore_College.classList.remove('hidden') ;
 })
+Button_Dance_College.addEventListener('click', function(){
+    disappear_colleges();
+    Dance_College.classList.remove('hidden') ;
+})
 
-//Ĭ����ʾ����һ��ѧԺ��ѡ����ѧԺ��
+//最后默认显示其中一个学院，选精魂学院。
 disappear_colleges();
 Spirits_College.classList.remove('hidden')
 
 
 
-//����ѧԺ College of Spirits
-
-//Ͷ��һ�ξ�����±�
-const Spirits_0 = document.getElementById('Spirits_0');//��ť��������
-const row_roll_SpiritTales = document.querySelector(".roll_SpiritTales")//����
-const result_SpiritTales = document.getElementById("result_SpiritTales")//�������
+//精魂学院 College of Spirits
+//投掷一次精魂故事表
+const Spirits_0 = document.getElementById('Spirits_0');//按钮——骰子
+const row_roll_SpiritTales = document.querySelector(".roll_SpiritTales")//整行
+const result_SpiritTales = document.getElementById("result_SpiritTales")//掷骰结果
 function roll_SpiritTales() {
-    //�������ʾ
+    //随机并显示
     result_SpiritTales.innerHTML = '';
     result_SpiritTales.innerHTML = 'D12 = '+ Math.floor(Math.random()*12+1);
-    //��Ч��
-    row_roll_SpiritTales.classList.add('shake')//��δ�������https://blog.csdn.net/qq_39147299/article/details/126726159 
+    //振动效果
+    row_roll_SpiritTales.classList.add('shake')//这段代码来自https://blog.csdn.net/qq_39147299/article/details/126726159 
     setTimeout(() => { row_roll_SpiritTales.classList.remove('shake') }, 500)
 }
-//���ܵĽ������ https://blog.csdn.net/sinat_41747081/article/details/90577971
+//可能的解决方案 https://blog.csdn.net/sinat_41747081/article/details/90577971
 Spirits_0.addEventListener('click', roll_SpiritTales)
 Spirits_0.addEventListener('click', PlayMusic)
 
-
-
-
-//�ֶ���������б�������������
 const MusicList_Spirits = [
-    ['FGO.mp3','GoldenLegend.mp3'],//0�ǳ鿨��Ч
-    ['Pokemon.mp3','DigitalMonsters.mp3','MagicConch.mp3','xuebao.mp3'],//�����￪ʼ��Tale-1
-    ['Yu-Gi-Oh!.mp3','liangerguang.mp3','woyaodashige.mp3'],
-    ['NARUTO.mp3','pengyou.mp3'],
-    ['jojo2.mp3','bengchemailiu.mp3'],
-    ['JiuPingZhiMaGuan.mp3','JohnWick.mp3'],
-    ['ZeldaQuickMoving.mp3','BOTW_Secret.wav','litang.mp3'],
-    ['NoBulletInGun.mp3','Hail_Hydra.mp3','NeverGonnaGiveYouUp.mp3','MonkeyonTree.mp3','dontshotme.mp3'],
-    ['COC_Sneak.mp3','AssassinsCreed.mp3'],
-    ['ThisisSpata.mp3','Vergil.mp3','wula.mp3'],
-    ['DaZaiBian.mp3','Smaug.mp3'],
-    ['HeroisNeverDie.mp3','hualiao.mp3'],
-    ['Tekeli-li.mp3','TenEvenNineTimes.mp3','heirentaiguan.mp3']    
+    ['FGO.mp3','金色传说.mp3'],//0是抽卡音效
+    ['神奇宝贝.mp3','数码宝贝.mp3','神奇海螺.mp3','芝士雪豹.mp3'],//从这里开始是Tale-1
+    ['游戏王.mp3','我要打十个.mp3','给他两耳光.mp3'],
+    ['火影忍者.mp3','朋友一生一辈子.mp3'],
+    ['jojo2逃跑.mp3','崩撤卖溜.mp3'],
+    ['我跳出来了，我又跳回去了.mp3','JohnWick.mp3'],
+    ['旷野之息_传送.mp3','旷野之息_发现秘密.mp3','到达世界最高城.mp3'],
+    ['我赌你的枪里没有子弹.mp3','Hail_Hydra.mp3','NeverGonnaGiveYouUp.mp3','树上骑个猴.mp3','队长别开枪是我.mp3'],
+    ['我要发动我的技能潜行.mp3','刺客信条.mp3'],
+    ['斯巴达.mp3','鬼泣_维吉尔.mp3','乌拉.mp3'],
+    ['我即大灾变.mp3','史矛革.mp3'],
+    ['英雄不朽.mp3','开始话疗.mp3'],
+    ['Tekeli-li.mp3','十倍甚至九倍.mp3','黑人抬棺.mp3']    
     ]
-
-//��Ԫ��
+//绑定元素
 const Spirits_1 = document.getElementById('Spirits_1');
 const Spirits_2 = document.getElementById('Spirits_2');
 const Spirits_3 = document.getElementById('Spirits_3');
@@ -222,7 +218,7 @@ const Spirits_9 = document.getElementById('Spirits_9');
 const Spirits_10 = document.getElementById('Spirits_10');
 const Spirits_11 = document.getElementById('Spirits_11');
 const Spirits_12 = document.getElementById('Spirits_12');
-//���Ӻ�����Ӧ
+//添加函数响应
 Spirits_1.addEventListener('click', PlayMusic)
 Spirits_2.addEventListener('click', PlayMusic)
 Spirits_3.addEventListener('click', PlayMusic)
@@ -239,29 +235,25 @@ Spirits_12.addEventListener('click', PlayMusic)
 
 
 
-//����ѧԺ College of Creation
+//创造学院 College of Creation
 
-
-//�ֶ���������б�������������
 const MusicList_Creation = [
-    [],//0����Ч
-    ['kaomianjin.mp3','xianqibolan.mp3'],
-    ['dali.mp3','liuxiang.mp3','CaptainAmerica.mp3','Sherlock.mp3','PerceptionCheck.mp3','meilibudazhe.mp3'],
-    ['leigongzhuwo.mp3','touxi.mp3'],
-    ['mianduikunnan.mp3','tongtoutiebi.mp3'],
-    ['duolaameng.mp3','miaomiaogongju.mp3'],
-    ['guizi.mp3','liuqian.mp3']
+    [],//0无音效
+    ['烤面筋.mp3','掀起波澜.mp3','像一颗尘土.mp3'],
+    ['大力出奇迹.mp3','刘翔.mp3','美国队长_我可以打一天.mp3','神探夏洛克.mp3','PerceptionCheck.mp3','美丽不打折.mp3'],
+    ['雷公助我.mp3','通辽偷袭.mp3'],
+    ['冬泳怪鸽_微笑面对困难.mp3','黑神话_铜头铁臂.mp3'],
+    ['哆啦A梦.mp3','妙妙工具.mp3'],
+    ['我柜子动了.mp3','见证奇迹的时刻.mp3']
     ]
-
-
-//��Ԫ��
+//绑定元素
 const Creation_1 = document.getElementById('Creation_1');
 const Creation_2 = document.getElementById('Creation_2');
 const Creation_3 = document.getElementById('Creation_3');
 const Creation_4 = document.getElementById('Creation_4');
 const Creation_5 = document.getElementById('Creation_5');
 const Creation_6 = document.getElementById('Creation_6');
-//���Ӻ�����Ӧ
+//添加函数响应
 Creation_1.addEventListener('click', PlayMusic)
 Creation_2.addEventListener('click', PlayMusic)
 Creation_3.addEventListener('click', PlayMusic)
@@ -271,19 +263,43 @@ Creation_6.addEventListener('click', PlayMusic)
 
 
 
-//����ѧԺ College ofLore
+//逸闻学院 College ofLore
 
-//�ֶ���������б�������������
 const MusicList_Lore = [
-    [],//0����Ч
-    ['buyaozaidale.mp3','xuanbugeshi.mp3','RNMtuiqian.mp3'],
-    ['soeasy.mp3','yaoyaolingxian.mp3']
+    [],//0无音效
+    ['不要再打了.mp3','我宣布个事.mp3','RNM退钱.mp3'],
+    ['哪里不会点哪里.mp3','遥遥领先.mp3']
     ]
-
-
-//��Ԫ��
+//绑定元素
 const Lore_1 = document.getElementById('Lore_1');
 const Lore_2 = document.getElementById('Lore_2');
-//���Ӻ�����Ӧ
+//添加函数响应
 Lore_1.addEventListener('click', PlayMusic)
 Lore_2.addEventListener('click', PlayMusic)
+
+
+
+//舞蹈学院 College of Dance
+const MusicList_Dance = [
+    [],//0无音效
+    ['Beat_it.mp3','多冷的隆冬.mp3','广播体操.mp3','极乐净土.mp3','四小天鹅.mp3','斗牛进行曲.mp3'],
+    ['南拳和北腿.mp3','南拳和北腿.mp3'],
+    ['表情悠哉跳个大概.mp3','其实我是演员.mp3','艺术细胞.mp3'],
+    ['头文字D.mp3','最炫民族风.mp3'], 
+    ['readygo.mp3','你要跳舞吗.mp3'],
+    ['一起摇摆.mp3','醉拳.mp3','左手右手一个慢动作.mp3']
+    ]
+//绑定元素
+const Dance_1 = document.getElementById('Dance_1');
+const Dance_2 = document.getElementById('Dance_2');
+const Dance_3 = document.getElementById('Dance_3');
+const Dance_4 = document.getElementById('Dance_4');
+const Dance_5 = document.getElementById('Dance_5');
+const Dance_6 = document.getElementById('Dance_6');
+//添加函数响应
+Dance_1.addEventListener('click', PlayMusic)
+Dance_2.addEventListener('click', PlayMusic)
+Dance_3.addEventListener('click', PlayMusic)
+Dance_4.addEventListener('click', PlayMusic)
+Dance_5.addEventListener('click', PlayMusic)
+Dance_6.addEventListener('click', PlayMusic)
