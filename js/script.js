@@ -191,7 +191,7 @@ Spirits_0.addEventListener('click', roll_SpiritTales)
 Spirits_0.addEventListener('click', PlayMusic)
 
 const MusicList_Spirits = [
-    ['FGO.mp3','金色传说.mp3'],//0是抽卡音效
+    ['FGO.mp3','金色传说.mp3','吸血鬼幸存者开箱.mp3','戏说不是胡说.mp3'],//0是抽卡音效
     ['神奇宝贝.mp3','数码宝贝.mp3','神奇海螺.mp3','芝士雪豹.mp3'],//从这里开始是Tale-1
     ['游戏王.mp3','我要打十个.mp3','给他两耳光.mp3'],
     ['火影忍者.mp3','朋友一生一辈子.mp3'],
