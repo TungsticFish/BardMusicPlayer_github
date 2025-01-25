@@ -282,10 +282,10 @@ Lore_2.addEventListener('click', PlayMusic)
 //舞蹈学院 College of Dance
 const MusicList_Dance = [
     [],//0无音效
-    ['Beat_it.mp3','多冷的隆冬.mp3','广播体操.mp3','极乐净土.mp3','四小天鹅.mp3','斗牛进行曲.mp3'],
+    ['Beat_it.mp3','多冷的隆冬.mp3','广播体操.mp3','极乐净土.mp3','四小天鹅.mp3','斗牛进行曲.mp3','探戈.mp3'],
     ['南拳和北腿.mp3','沙包大的拳头.mp3'],
     ['表情悠哉跳个大概.mp3','其实我是演员.mp3','艺术细胞.mp3'],
-    ['头文字D.mp3','最炫民族风.mp3'], 
+    ['头文字D.mp3','最炫民族风.mp3','没病走两步.mp3'], 
     ['readygo.mp3','你要跳舞吗.mp3'],
     ['一起摇摆.mp3','醉拳.mp3','左手右手一个慢动作.mp3']
     ]
