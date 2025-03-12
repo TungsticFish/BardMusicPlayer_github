@@ -36,9 +36,10 @@ function PlayMusic() {
         break;
         case 'Lore':
         MusicList = MusicList_Lore;
+        break;
         case 'Dance':
         MusicList = MusicList_Dance;
-        break;
+        break;//加新学院的时候别忘记每个下面加break
     }
     
     //选择列表中的音乐
