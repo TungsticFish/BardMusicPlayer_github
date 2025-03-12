@@ -83,11 +83,11 @@ function PlayMusic() {
 const MusicList_Bard = [
     [''],//0-空的，下面开始是本职技能
     ['youcandoanything.mp3','我来助你.mp3','justdoit.mp3','EVA.mp3','你被强化了，快上.mp3'],//1-诗人激励
-    ['Trump.mp3','各个是强项.mp3'],//2-万事通
+    ['Trump.mp3','各个是强项.mp3','略懂略懂.mp3'],//2-万事通
     ['3点了，饮茶先.mp3','报菜名.mp3','迷宫饭.mp3'],//3-休憩曲
     ['你清醒一点.mp3','反诈APP.mp3'],//4-反迷惑
     ['孔乙己.mp3','你能我也能.mp3','小偷公司.mp3'],//5-魔法奥秘
-    ['诸葛亮骂死王朗.mp3','钉宫三连.mp3','我能说脏话吗.mp3']//6-恶毒嘲笑
+    ['诸葛亮骂死王朗.mp3','钉宫三连.mp3','我能说脏话吗.mp3','练死劲.mp3']//6-恶毒嘲笑
     ] 
 //绑定元素
 const Bard_1 = document.getElementById('Bard_1');
@@ -267,7 +267,7 @@ Creation_6.addEventListener('click', PlayMusic)
 
 const MusicList_Lore = [
     [],//0无音效
-    ['不要再打了.mp3','我宣布个事.mp3','RNM退钱.mp3','意大利面拌42号混凝土.mp3'],
+    ['不要再打了.mp3','我宣布个事.mp3','RNM退钱.mp3','意大利面拌42号混凝土.mp3','howdareyou.mp3'],
     ['哪里不会点哪里.mp3','遥遥领先.mp3']
     ]
 //绑定元素
