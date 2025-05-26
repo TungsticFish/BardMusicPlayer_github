@@ -42,7 +42,22 @@ function PlayMusic() {
         break;
         case 'Others':
         MusicList = MusicList_Others;
-        break;        
+        break;       
+        case 'Eloquence':
+        MusicList = MusicList_Eloquence;
+        break;   
+        case 'Swords':
+        MusicList = MusicList_Swords;
+        break; 
+        case 'Valor':
+        MusicList = MusicList_Valor;
+        break; 
+        case 'Glamour':
+        MusicList = MusicList_Glamour;
+        break; 
+        case 'Whispers':
+        MusicList = MusicList_Whispers;
+        break; 
         //加新学院的时候别忘记每个下面加break
     }
     
@@ -140,12 +155,24 @@ const Button_Spirits_College = document.getElementById("Spirits_College")
 const Button_Creation_College = document.getElementById("Creation_College")
 const Button_Lore_College = document.getElementById("Lore_College")
 const Button_Dance_College = document.getElementById("Dance_College")
+const Button_Eloquence_College = document.getElementById("Eloquence_College")
+const Button_Swords_College = document.getElementById("Swords_College")
+const Button_Valor_College = document.getElementById("Valor_College")
+const Button_Glamour_College = document.getElementById("Glamour_College")
+const Button_Whispers_College = document.getElementById("Whispers_College")
 const Button_Others_Scenario = document.getElementById("Others_Scenario")
+
+
 
 const Spirits_College = document.querySelector(".Spirits_College")
 const Creation_College = document.querySelector(".Creation_College")
 const Lore_College = document.querySelector(".Lore_College")
 const Dance_College = document.querySelector(".Dance_College")
+const Eloquence_College = document.querySelector(".Eloquence_College")
+const Swords_College = document.querySelector(".Swords_College")
+const Valor_College = document.querySelector(".Valor_College")
+const Glamour_College = document.querySelector(".Glamour_College")
+const Whispers_College = document.querySelector(".Whispers_College")
 const Others_Scenario = document.querySelector(".Others_Scenario")
 
 function disappear_colleges(){    //隐藏所有函数，然后每个学院都是先隐藏所有，再出现该学院。
@@ -153,6 +180,11 @@ function disappear_colleges(){    //隐藏所有函数，然后每个学院都�
     Creation_College.classList.add('hidden');
     Lore_College.classList.add('hidden');
     Dance_College.classList.add('hidden');
+    Eloquence_College.classList.add('hidden');
+    Swords_College.classList.add('hidden');
+    Valor_College.classList.add('hidden');
+    Glamour_College.classList.add('hidden');
+    Whispers_College.classList.add('hidden');
     Others_Scenario.classList.add('hidden');
 }
 
@@ -174,10 +206,32 @@ Button_Dance_College.addEventListener('click', function(){
     disappear_colleges();
     Dance_College.classList.remove('hidden') ;
 })
+Button_Eloquence_College.addEventListener('click', function(){
+    disappear_colleges();
+    Eloquence_College.classList.remove('hidden') ;
+})
+Button_Swords_College.addEventListener('click', function(){
+    console.log('1')
+    disappear_colleges();
+    Swords_College.classList.remove('hidden') ;
+})
+Button_Valor_College.addEventListener('click', function(){
+    disappear_colleges();
+    Valor_College.classList.remove('hidden') ;
+})
+Button_Glamour_College.addEventListener('click', function(){
+    disappear_colleges();
+    Glamour_College.classList.remove('hidden') ;
+})
+Button_Whispers_College.addEventListener('click', function(){
+    disappear_colleges();
+    Whispers_College.classList.remove('hidden') ;
+})
 Button_Others_Scenario.addEventListener('click', function(){
     disappear_colleges();    
     Others_Scenario.classList.remove('hidden') ;
 })
+
 
 
 //最后默认显示其中一个学院，选精魂学院。
@@ -332,3 +386,73 @@ const Others_2 = document.getElementById('Others_2');
 //添加函数响应
 Others_1.addEventListener('click', PlayMusic)
 Others_2.addEventListener('click', PlayMusic)
+
+
+
+
+
+
+//雄辩学院 College of Eloquence
+const MusicList_Eloquence = [
+    [],//0无音效
+    ['赛马.mp3'],
+    ['那我问你.mp3']
+    ]
+//绑定元素
+const Eloquence_1 = document.getElementById('Eloquence_1');
+const Eloquence_2 = document.getElementById('Eloquence_2');
+//添加函数响应
+Eloquence_1.addEventListener('click', PlayMusic)
+Eloquence_2.addEventListener('click', PlayMusic)
+
+//剑舞学院 College of Swords
+const MusicList_Swords = [
+    [],//0无音效
+    ['赛马.mp3'],
+    ['二泉映月.mp3']
+    ]
+//绑定元素
+const Swords_1 = document.getElementById('Swords_1');
+const Swords_2 = document.getElementById('Swords_2');
+//添加函数响应
+Swords_1.addEventListener('click', PlayMusic)
+Swords_2.addEventListener('click', PlayMusic)
+
+//勇气学院 College of Valor
+const MusicList_Valor = [
+    [],//0无音效
+    ['赛马.mp3'],
+    ['二泉映月.mp3']
+    ]
+//绑定元素
+const Valor_1 = document.getElementById('Valor_1');
+const Valor_2 = document.getElementById('Valor_2');
+//添加函数响应
+Valor_1.addEventListener('click', PlayMusic)
+Valor_2.addEventListener('click', PlayMusic)
+
+//迷惑学院 College of Glamour
+const MusicList_Glamour = [
+    [],//0无音效
+    ['赛马.mp3'],
+    ['二泉映月.mp3']
+    ]
+//绑定元素
+const Glamour_1 = document.getElementById('Glamour_1');
+const Glamour_2 = document.getElementById('Glamour_2');
+//添加函数响应
+Glamour_1.addEventListener('click', PlayMusic)
+Glamour_2.addEventListener('click', PlayMusic)
+
+//低语学院 College of Whispers
+const MusicList_Whispers = [
+    [],//0无音效
+    ['赛马.mp3'],
+    ['二泉映月.mp3']
+    ]
+//绑定元素
+const Whispers_1 = document.getElementById('Whispers_1');
+const Whispers_2 = document.getElementById('Whispers_2');
+//添加函数响应
+Whispers_1.addEventListener('click', PlayMusic)
+Whispers_2.addEventListener('click', PlayMusic)
