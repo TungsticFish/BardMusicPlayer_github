@@ -41,6 +41,12 @@ html {
     flex-direction: row;
 }
 
+.subclass_hidden_list {    
+    display: flex;
+    flex-direction: row;
+    visibility: hidden;
+}
+
 .subclass {
     border: 1.5px solid black;
     margin: 6px;
