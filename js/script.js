@@ -39,7 +39,11 @@ function PlayMusic() {
         break;
         case 'Dance':
         MusicList = MusicList_Dance;
-        break;//加新学院的时候别忘记每个下面加break
+        break;
+        case 'Others':
+        MusicList = MusicList_Others;
+        break;        
+        //加新学院的时候别忘记每个下面加break
     }
     
     //选择列表中的音乐
@@ -136,17 +140,20 @@ const Button_Spirits_College = document.getElementById("Spirits_College")
 const Button_Creation_College = document.getElementById("Creation_College")
 const Button_Lore_College = document.getElementById("Lore_College")
 const Button_Dance_College = document.getElementById("Dance_College")
+const Button_Others_Scenario = document.getElementById("Others_Scenario")
 
 const Spirits_College = document.querySelector(".Spirits_College")
 const Creation_College = document.querySelector(".Creation_College")
 const Lore_College = document.querySelector(".Lore_College")
 const Dance_College = document.querySelector(".Dance_College")
+const Others_Scenario = document.querySelector(".Others_Scenario")
 
 function disappear_colleges(){    //隐藏所有函数，然后每个学院都是先隐藏所有，再出现该学院。
     Spirits_College.classList.add('hidden');
     Creation_College.classList.add('hidden');
     Lore_College.classList.add('hidden');
     Dance_College.classList.add('hidden');
+    Others_Scenario.classList.add('hidden');
 }
 
 No_College.addEventListener('click', disappear_colleges)
@@ -167,6 +174,11 @@ Button_Dance_College.addEventListener('click', function(){
     disappear_colleges();
     Dance_College.classList.remove('hidden') ;
 })
+Button_Others_Scenario.addEventListener('click', function(){
+    disappear_colleges();    
+    Others_Scenario.classList.remove('hidden') ;
+})
+
 
 //最后默认显示其中一个学院，选精魂学院。
 disappear_colleges();
@@ -304,3 +316,19 @@ Dance_3.addEventListener('click', PlayMusic)
 Dance_4.addEventListener('click', PlayMusic)
 Dance_5.addEventListener('click', PlayMusic)
 Dance_6.addEventListener('click', PlayMusic)
+
+
+
+
+//其他 Others_Scenario
+const MusicList_Others = [
+    [],//0无音效
+    ['赛马.mp3'],
+    ['二泉映月.mp3']
+    ]
+//绑定元素
+const Others_1 = document.getElementById('Others_1');
+const Others_2 = document.getElementById('Others_2');
+//添加函数响应
+Others_1.addEventListener('click', PlayMusic)
+Others_2.addEventListener('click', PlayMusic)
