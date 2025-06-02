@@ -378,14 +378,26 @@ Dance_6.addEventListener('click', PlayMusic)
 const MusicList_Others = [
     [],//0无音效
     ['赛马.mp3'],
-    ['二泉映月.mp3']
+    ['二泉映月.mp3'],
+    ['孤独的美食家.mp3'],
+    ['舌尖上的中国.mp3'],
+    ['中华小当家.mp3'],
+    []
     ]
 //绑定元素
 const Others_1 = document.getElementById('Others_1');
 const Others_2 = document.getElementById('Others_2');
+const Others_3 = document.getElementById('Others_3');
+const Others_4 = document.getElementById('Others_4');
+const Others_5 = document.getElementById('Others_5');
+//const Others_6 = document.getElementById('Others_6');
 //添加函数响应
 Others_1.addEventListener('click', PlayMusic)
 Others_2.addEventListener('click', PlayMusic)
+Others_3.addEventListener('click', PlayMusic)
+Others_4.addEventListener('click', PlayMusic)
+Others_5.addEventListener('click', PlayMusic)
+//Others_6.addEventListener('click', PlayMusic)
 
 
 
