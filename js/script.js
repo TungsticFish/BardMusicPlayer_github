@@ -382,6 +382,8 @@ const MusicList_Others = [
     ['孤独的美食家.mp3'],
     ['舌尖上的中国.mp3'],
     ['中华小当家.mp3'],
+    ['缘分让我们相遇.mp3'],
+    ['难忘今宵.mp3'],
     []
     ]
 //绑定元素
@@ -390,14 +392,19 @@ const Others_2 = document.getElementById('Others_2');
 const Others_3 = document.getElementById('Others_3');
 const Others_4 = document.getElementById('Others_4');
 const Others_5 = document.getElementById('Others_5');
-//const Others_6 = document.getElementById('Others_6');
+const Others_6 = document.getElementById('Others_6');
+const Others_7 = document.getElementById('Others_7');
+//const Others_8 = document.getElementById('Others_8');
 //添加函数响应
 Others_1.addEventListener('click', PlayMusic)
 Others_2.addEventListener('click', PlayMusic)
 Others_3.addEventListener('click', PlayMusic)
 Others_4.addEventListener('click', PlayMusic)
 Others_5.addEventListener('click', PlayMusic)
-//Others_6.addEventListener('click', PlayMusic)
+Others_6.addEventListener('click', PlayMusic)
+Others_7.addEventListener('click', PlayMusic)
+//Others_8.addEventListener('click', PlayMusic)
+
 
 
 
