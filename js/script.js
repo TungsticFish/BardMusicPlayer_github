@@ -247,8 +247,9 @@ const row_roll_SpiritTales = document.querySelector(".roll_SpiritTales")//整行
 const result_SpiritTales = document.getElementById("result_SpiritTales")//掷骰结果
 function roll_SpiritTales() {
     //随机并显示
+    t = Math.random();
     result_SpiritTales.innerHTML = '';
-    result_SpiritTales.innerHTML = 'D12 = '+ Math.floor(Math.random()*12+1);
+    result_SpiritTales.innerHTML = 'D6 =  '+ Math.floor(t*6+1)+'  ||  D8 =  '+ Math.floor(t*8+1) +'  ||  D10 =  '+ Math.floor(t*10+1) +'  ||  D12 =  '+ Math.floor(t*12+1) ;
     //振动效果
     row_roll_SpiritTales.classList.add('shake')//这段代码来自https://blog.csdn.net/qq_39147299/article/details/126726159 
     setTimeout(() => { row_roll_SpiritTales.classList.remove('shake') }, 500)
